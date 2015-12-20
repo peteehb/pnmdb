@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('first_name', models.CharField(max_length=64)),
                 ('last_name', models.CharField(max_length=64)),
-                ('position', models.CharField(max_length=2, choices=[(b'Goalkeeper', b'Goalkeeper'), (b'Defender', b'Defender'), (b'Midfielder', b'Midfielder'), (b'Forward', b'Forward')])),
+                ('position', models.CharField(max_length=64, choices=[(b'Goalkeeper', b'Goalkeeper'), (b'Defender', b'Defender'), (b'Midfielder', b'Midfielder'), (b'Forward', b'Forward')])),
             ],
         ),
         migrations.CreateModel(

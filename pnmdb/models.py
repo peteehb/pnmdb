@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Club(models.Model):
+    user = models.ForeignKey(User, related_name='club', null=True)
     name = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
@@ -9,6 +10,7 @@ class Club(models.Model):
 
 
 class Team(models.Model):
+    club = models.ForeignKey(Club, related_name='teams', null=True)
     name = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
@@ -16,10 +18,9 @@ class Team(models.Model):
 
 
 class Player(models.Model):
-    user = models.OneToOneField(User)
+    team = models.ManyToManyField(Team, related_name='players')
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
-    team = models.ForeignKey(Team)
 
     POSITION_CHOICES = (
         ('Goalkeeper', 'Goalkeeper'),
@@ -27,7 +28,7 @@ class Player(models.Model):
         ('Midfielder', 'Midfielder'),
         ('Forward', 'Forward')
     )
-    position = models.CharField(max_length=2, choices=POSITION_CHOICES)
+    position = models.CharField(max_length=64, choices=POSITION_CHOICES)
 
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)

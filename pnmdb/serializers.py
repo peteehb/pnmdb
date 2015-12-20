@@ -6,7 +6,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('url', 'username', 'email', 'groups', 'club')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,13 +18,13 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class ClubSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Club
-        fields = ('url', 'name')
+        fields = ('url', 'name', 'user', 'members', 'teams')
 
 
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Team
-        fields = ('url', 'name')
+        fields = ('url', 'name', 'club', 'players')
 
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
